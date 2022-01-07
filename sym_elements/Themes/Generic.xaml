@@ -1,0 +1,62 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local ="clr-namespace:sym_elements">
+    <SolidColorBrush x:Key="SymButton.Background" Color="#ff252525"/>
+    <SolidColorBrush x:Key="SymButton.Hover.Background" Color="#40ffffff"/>
+    <SolidColorBrush x:Key="SymButton.Pressed.Background" Color="#60ffffff"/>
+    <SolidColorBrush x:Key="SymButton.Disable.Foreground" Color="#ff707070"/>
+    <Style TargetType="{x:Type local:SymButton}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SymButton">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" Name="brd" Padding="{TemplateBinding Padding}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Margin="{Binding SymMargin, RelativeSource={RelativeSource AncestorType=local:SymButton}}" Name="sym"
+                            Grid.Column="{Binding ColumnIndex, RelativeSource={RelativeSource AncestorType=local:SymButton}}"
+                                   Content="{Binding Symbol, RelativeSource={RelativeSource AncestorType=local:SymButton}}"
+                                   FontSize="{Binding SymFontSize, RelativeSource={RelativeSource AncestorType=local:SymButton}}"
+                                   FontFamily="Segoe MDL2 Assets" Foreground="{Binding RelativeSource={RelativeSource  AncestorType=local:SymButton}, Path=Foreground}"
+                                   VerticalAlignment="Center"/>
+                            <Label Grid.Column="1" Foreground="{Binding RelativeSource={RelativeSource  AncestorType=local:SymButton}, Path=Foreground}"
+                                          VerticalAlignment="Center" HorizontalAlignment="Center" Name="text">
+                                <ContentPresenter Content="{Binding RelativeSource={RelativeSource AncestorType=local:SymButton}, Path=Content}"></ContentPresenter>
+                            </Label>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource SymButton.Hover.Background}" TargetName="brd"/>
+                        </Trigger>
+                        <Trigger Property="Button.IsPressed"  Value="True">
+                            <Setter Property="Background" Value="{StaticResource SymButton.Pressed.Background}" TargetName="brd"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource SymButton.Disable.Foreground}" TargetName="sym"/>
+                            <Setter Property="Foreground" Value="{StaticResource SymButton.Disable.Foreground}" TargetName="text"/>
+                        </Trigger>
+                        <Trigger Property="OptionCompose" Value="TextAndSymbol">
+                            <Setter Property="Visibility" Value="Visible" TargetName="sym"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="text"/>
+                        </Trigger>
+                        <Trigger Property="OptionCompose" Value="TextOnly">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="sym"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="text"/>
+                        </Trigger>
+                        <Trigger Property="OptionCompose" Value="SymbolOnly">
+                            <Setter Property="Visibility" Value="Visible" TargetName="sym"/>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="text"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>               
+    </Style>
+</ResourceDictionary>
