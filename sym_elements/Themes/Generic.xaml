@@ -23,7 +23,7 @@
                             Grid.Column="{Binding ColumnIndex, RelativeSource={RelativeSource AncestorType=local:SymButton}}"
                                    Content="{Binding Symbol, RelativeSource={RelativeSource AncestorType=local:SymButton}}"
                                    FontSize="{Binding SymFontSize, RelativeSource={RelativeSource AncestorType=local:SymButton}}"
-                                   FontFamily="Segoe MDL2 Assets" Foreground="{Binding RelativeSource={RelativeSource  AncestorType=local:SymButton}, Path=Foreground}"
+                                   FontFamily="Segoe MDL2 Assets" Foreground="{Binding RelativeSource={RelativeSource  AncestorType=local:SymButton}, Path=SymbolForeground}"
                                    VerticalAlignment="Center"/>
                             <Label Grid.Column="1" Foreground="{Binding RelativeSource={RelativeSource  AncestorType=local:SymButton}, Path=Foreground}"
                                           VerticalAlignment="Center" HorizontalAlignment="Center" Name="text">

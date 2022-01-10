@@ -67,6 +67,18 @@ namespace sym_elements
 
 
 
+        public Brush SymbolForeground
+        {                            
+            get { return (Brush)GetValue(SymbolForegroundProperty); }
+            set { SetValue(SymbolForegroundProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SymbolForeground.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SymbolForegroundProperty =
+            DependencyProperty.Register("SymbolForeground", typeof(Brush), typeof(SymButton), new PropertyMetadata(Brushes.White));
+
+
+
         public SymOption OptionCompose
         {
             get { return (SymOption)GetValue(OptionComposeProperty); }
